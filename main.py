@@ -3,19 +3,19 @@ import requests
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-# === Настройки ===
-TOKEN = "8216369964:AAGvFyh7ZxMxvvq4GBKvpYENoiaDRM19Efo"
-WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwghFrImuc5LpyCMiVW9htkNniRe1R4vqWJMFz6tiDP9GsIdPBIOGXz3K_OV_HCd7U83A/exec"
 
-# === Логирование ===
+TOKEN = "..."
+WEB_APP_URL = "..."
+
+
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO
 )
 
-# === Команды ===
 
-# /set — добавить запись
+
+# /set 
 async def set_banana(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         if len(context.args) < 3:
@@ -33,7 +33,7 @@ async def set_banana(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         await update.message.reply_text(f"⚠️ Ошибка: {e}")
 
-# /balance — показать баланс
+# /balance 
 async def balance(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         if len(context.args) < 1:
@@ -53,7 +53,7 @@ async def balance(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         await update.message.reply_text(f"⚠️ Ошибка: {e}")
 
-# /remove — удалить запись
+# /remove 
 async def remove(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         if len(context.args) < 2:
@@ -74,7 +74,7 @@ async def remove(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         await update.message.reply_text(f"⚠️ Ошибка: {e}")
 
-# /removeall — удалить все записи пользователя
+# /removeall 
 async def remove_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         if len(context.args) < 1:
@@ -96,7 +96,7 @@ async def remove_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         await update.message.reply_text(f"⚠️ Ошибка: {e}")
 
-# /history — показать все записи пользователя
+# /history 
 async def history(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         if len(context.args) < 1:
@@ -117,7 +117,7 @@ async def history(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         await update.message.reply_text(f"⚠️ Ошибка: {e}")
 
-# === Запуск ===
+# start
 def main():
     app = ApplicationBuilder().token(TOKEN).build()
 
