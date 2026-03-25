@@ -18,7 +18,6 @@ function handleRequest(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
   var lastRow = sheet.getLastRow();
 
-  // === Вспомогательная функция для форматирования даты ===
   function formatDateValue(val) {
     if (!val && val !== 0) return "";
     if (Object.prototype.toString.call(val) === "[object Date]") {
@@ -45,10 +44,10 @@ function handleRequest(e) {
     var nick = e.parameter.nick || data.nick;
     var amount = e.parameter.amount || data.amount;
     sheet.appendRow([date, nick, amount]);
-    return ContentService.createTextOutput("✅ Added");
+    return ContentService.createTextOutput("Added");
   }
 
-  // === BALANCE ===
+  // balance
   if (action == "balance") {
     var nick = e.parameter.nick || data.nick;
     var total = 0;
@@ -61,7 +60,7 @@ function handleRequest(e) {
     return ContentService.createTextOutput("BALANCE:" + total);
   }
 
-  // === REMOVE ===
+  // remove
   if (action == "remove") {
     var dateRaw = e.parameter.date || data.date;
     var nickRaw = e.parameter.nick || data.nick;
@@ -84,7 +83,7 @@ function handleRequest(e) {
     return ContentService.createTextOutput("NOT_FOUND");
   }
 
-  // === REMOVEALL ===
+  // removeall
   if (action == "removeall") {
     var nickRaw = e.parameter.nick || data.nick;
     if (!nickRaw) return ContentService.createTextOutput("ERROR: missing nick");
@@ -102,7 +101,7 @@ function handleRequest(e) {
     return ContentService.createTextOutput("SUCCESS:" + rowsToDelete.length);
   }
 
-  // === HISTORY ===
+  // history
   if (action == "history") {
     var nickRaw = e.parameter.nick || data.nick;
     if (!nickRaw) return ContentService.createTextOutput("ERROR: missing nick");
